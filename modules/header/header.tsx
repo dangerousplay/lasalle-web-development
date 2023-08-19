@@ -32,21 +32,15 @@ export function Header() {
   return (
     <Base>
       <TitleLabel
-        title={<Link href="/">Next.js / RSC / Windstitch Starter</Link>}
+        title={<Link href="/">Doação de Sangue</Link>}
       >
-        <span className="-ml-1 hidden lg:block">
-          by <a href="https://flaming.codes">flaming.codes</a>
-        </span>
       </TitleLabel>
       <Nav>
         <LinkItem href="/">
-          <HomeIcon className="mr-2" /> Home
+          <HomeIcon className="mr-2" /> Inicio
         </LinkItem>
-        <LinkItem href="/interactive-rsc">
-          <Pencil2Icon className="mr-2" /> Interactive RSC
-        </LinkItem>
-        <LinkItem href="/next-13">
-          <LightningBoltIcon className="mr-2" /> Next.js 13
+        <LinkItem href="/register">
+          <Pencil2Icon className="mr-2" /> Cadastro
         </LinkItem>
       </Nav>
     </Base>

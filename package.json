@@ -17,6 +17,7 @@
     "clsx": "1.2.1",
     "eslint": "8.38.0",
     "eslint-config-next": "13.4.1",
+    "formik": "2.4.3",
     "next": "13.4.9",
     "next-seo": "6.0.0",
     "pts": "0.10.12",
@@ -24,7 +25,8 @@
     "react-dom": "18.2.0",
     "react-pts-canvas": "0.3.3",
     "server-only": "0.0.1",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "yup": "1.2.0"
   },
   "devDependencies": {
     "@radix-ui/colors": "0.1.8",
