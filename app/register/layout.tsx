@@ -4,6 +4,8 @@ import { PropsWithChildren } from "react";
 import { w } from "windstitch";
 import {useField, useFormik, Form, Formik} from "formik";
 import * as Yup from 'yup';
+import React from 'react';
+
 
 type Props = PropsWithChildren<{}>;
 
@@ -13,8 +15,16 @@ const Base = w.div(`
 
 const Description = w.section(``);
 
+type TextInputProps = {
+    label: string
+    id?: string
+    name: string
+    placeholder?: string
+    pattern?: string
+    type?: string
+}
 
-const TextInput = ({ label, ...props }) => {
+const TextInput = ({ label, ...props }: TextInputProps) => {
     // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
     // which we can spread on <input>. We can use field meta to show an error
     // message if the field is invalid and it has been touched (i.e. visited)
@@ -30,19 +40,25 @@ const TextInput = ({ label, ...props }) => {
     );
 };
 
-const NumberInput = ({ ...props }) => {
+const NumberInput = ({ ...props }: TextInputProps) => {
+    return (
+        <TextInput { ...props} type="number" />
+    )
+};
+
+const DateInput = ({ ...props }: TextInputProps) => {
     return (
         <TextInput {...props} type="number" />
     )
 };
 
-const DateInput = ({ ...props }) => {
-    return (
-        <TextInput {...props} type="date" />
-    )
-};
+type CheckboxProps = {
+    label: string
+    id?: string
+    name: string
+}
 
-const Checkbox = ({ label, ...props }) => {
+const Checkbox = ({ label, ...props }: CheckboxProps) => {
     // React treats radios and checkbox inputs differently from other input types: select and textarea.
     // Formik does this too! When you specify `type` to useField(), it will
     // return the correct bag of props for you -- a `checked` prop will be included
@@ -51,7 +67,7 @@ const Checkbox = ({ label, ...props }) => {
     return (
         <div className="gap-3 flex flex-row" >
             <input type="checkbox" {...field} {...props} />
-            <label htmlFor={props.id || props.name}>{label.split('\n').map(t => <p>{t}</p>)}</label>
+            <label htmlFor={props.id || props.name}>{label.split('\n').map(t => <p key={t}>{t}</p>)}</label>
             {meta.touched && meta.error ? (
                 <div className="text-red-10 font-bold">{meta.error}</div>
             ) : null}
@@ -59,7 +75,14 @@ const Checkbox = ({ label, ...props }) => {
     );
 };
 
-const Select = ({ label, ...props }) => {
+
+type SelectProps = PropsWithChildren<{
+    label: string
+    id?: string
+    name: string
+}>
+
+const Select = ({ label, ...props }: SelectProps) => {
     const [field, meta] = useField(props);
     return (
         <div className={'gap-3 flex flex-col'}>
@@ -72,7 +95,16 @@ const Select = ({ label, ...props }) => {
     );
 };
 
-const TextArea = ({ label, className = '', ...props }) => {
+type TextAreaProps = {
+    label: string
+    id?: string
+    name: string
+    className?: string
+    cols: number
+    rows: number
+}
+
+const TextArea = ({ label, className = '', ...props }: TextAreaProps) => {
     // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
     // which we can spread on <input>. We can use field meta to show an error
     // message if the field is invalid and it has been touched (i.e. visited)
@@ -88,7 +120,15 @@ const TextArea = ({ label, className = '', ...props }) => {
     );
 };
 
-const RadioGroup = ({ options, legend, ...props }) => {
+type RadioGroupProps = {
+    id?: string
+    name: string
+    options: { [k: string]: string }
+    legend: string
+    className?: string
+}
+
+const RadioGroup = ({ options, legend, ...props }: RadioGroupProps) => {
     const [field, meta] = useField({ ...props, type: 'radio' });
     return (
         <fieldset className={'pt-3'}>
