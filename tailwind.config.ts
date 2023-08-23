@@ -1,9 +1,7 @@
 import { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
 import tailwindTypography from "@tailwindcss/typography";
-// @ts-expect-error - No types available for these packages.
 import windyRadixPalette from "windy-radix-palette";
-// @ts-expect-error - No types available for these packages.
 import windyRadixTypography from "windy-radix-typography";
 
 function pxRem(px: number): string {
