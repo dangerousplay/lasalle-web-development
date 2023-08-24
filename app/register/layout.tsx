@@ -1,8 +1,8 @@
 'use client'
 
-import { PropsWithChildren } from "react";
+import {PropsWithChildren, useState} from "react";
 import { w } from "windstitch";
-import {useField, useFormik, Form, Formik} from "formik";
+import {useField, Form, Formik} from "formik";
 import * as Yup from 'yup';
 import React from 'react';
 
@@ -22,6 +22,7 @@ type TextInputProps = {
     placeholder?: string
     pattern?: string
     type?: string
+    onChange?: (e: any) => void
 }
 
 const TextInput = ({ label, ...props }: TextInputProps) => {
@@ -46,9 +47,22 @@ const NumberInput = ({ ...props }: TextInputProps) => {
     )
 };
 
-const DateInput = ({ ...props }: TextInputProps) => {
+
+type DateInputProps = TextInputProps & {
+    showDateComponent?: (e: string) => React.ReactElement
+    showDate?: boolean
+}
+
+const DateInput = ({
+  showDate = false,
+  showDateComponent = (_) => <></>,
+  ...props }: DateInputProps) => {
+    const [value, setValue] = useState()
     return (
-        <TextInput {...props} type="number" />
+        <div>
+            <TextInput {...props} onChange={(e) => setValue(e.target.value)} type="date" />
+            { showDate ? value ? showDateComponent(value) : <></> : <></>}
+        </div>
     )
 };
 
@@ -162,6 +176,22 @@ const sexTypes = {
     f: 'Feminino'
 }
 
+const calculateAge = (dateOfBirth: string) => {
+    const dob = new Date(dateOfBirth);
+    const today = new Date();
+
+    let age = today.getFullYear() - dob.getFullYear();
+    let month = today.getMonth() - dob.getMonth();
+
+    if (month < 0 || (month === 0 && today.getDate() < dob.getDate())) {
+        age--;
+    }
+
+    if (age < 0 )
+        age = 0
+
+    return age;
+}
 
 export default function RegisterLayout(props: Props) {
   const { children } = props;
@@ -177,11 +207,16 @@ export default function RegisterLayout(props: Props) {
         </Description>
           <Formik
               initialValues={{
-                  firstName: '',
-                  lastName: '',
+                  name: '',
+                  username: '',
+                  password: '',
                   email: '',
-                  acceptedTerms: false, // added for our checkbox
-                  jobType: '', // added for our select
+                  cellphone: '',
+                  weight: 0,
+                  bloodType: '',
+                  bloodRhType: '',
+                  sex: '',
+                  agreeTerms: false,
               }}
               validationSchema={Yup.object({
                   name: Yup.string()
@@ -222,7 +257,8 @@ export default function RegisterLayout(props: Props) {
                       .required('Required'),
                   agreeTerms: Yup.bool()
                       .isTrue('You should accept the terms')
-                      .required()
+                      .required('Required'),
+                  birthDate: Yup.date().required('Required')
               })}
               onSubmit={(values, { setSubmitting }) => {
                   setTimeout(() => {
@@ -261,7 +297,16 @@ export default function RegisterLayout(props: Props) {
                       placeholder="51-99999999"
                   />
 
-                  <DateInput label="Data de nascimento" name="birthDate" placeholder="01/01/2000" />
+                  <DateInput label="Data de nascimento"
+                             name="birthDate"
+                             placeholder="01/01/2000"
+                             showDate={true}
+                             showDateComponent={(d) => {
+                                 const age = calculateAge(d);
+
+                                 return (<p>Idade: {age} anos</p>);
+                             }
+                  } />
 
                   <NumberInput label="Peso KG" name="weight" placeholder="70"/>
 
