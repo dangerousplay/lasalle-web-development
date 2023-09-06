@@ -10,7 +10,7 @@ import React from 'react';
 type Props = PropsWithChildren<{}>;
 
 const Base = w.div(`
-  p-6 text-14
+  p-6 text-14 text-justify
 `);
 
 const Description = w.section(``);
@@ -70,6 +70,7 @@ type CheckboxProps = {
     label: string
     id?: string
     name: string
+    enabled?: boolean
 }
 
 const Checkbox = ({ label, ...props }: CheckboxProps) => {
@@ -341,38 +342,7 @@ export default function RegisterLayout(props: Props) {
 
                   <TextArea name='comment' label='Observações' className='col-span-2 w-full max-w-full' cols={40} rows={15} />
 
-                  <button type="submit" className={'col-span-2'}>Enviar</button>
-
-
-
-
-
-                  {/*<p>*/}
-                  {/*    Títilo do Formulário: Dados de Informações do Doador*/}
-                  {/*    Cabeçalho do Formulário: Dados de Informações*/}
-                  {/*    Nome: Campo de Texto*/}
-                  {/*    Usuário: Campo Texto*/}
-                  {/*    Senha: Campo password*/}
-                  {/*    E-mail: Campo tipo e-mail*/}
-                  {/*    Telefone: Campo tipo nº telefônico. Formatar como 51-99999999*/}
-                  {/*    Data de nascimento: Campo de data, calcular a idade e mostrar em um texto ao lado com o Label Idade*/}
-                  {/*    Peso (kg): Campo numérico*/}
-                  {/*    Tipo Sanguineo: Lista drop-dow com as opções: O, A, B, AB. Sem opção escolhida*/}
-                  {/*    Fator RH: Lista drop-dow com as opções: +, -. Sem opção escolhida*/}
-                  {/*    Sexo: Opções, Feminino e Masculino. Campo tipo Radio Button. Sem opção marcada*/}
-                  {/*    Número do documento: Campo Texto*/}
-
-                  {/*    Campos CheckBox, agrupar esses campos abaixo, colocando um box em volta das perguntas abaixo, com*/}
-                  {/*    o label Informações Adicionais*/}
-                  {/*    Estar descansado (ter dormido pelo menos 6 horas nas últimas 24 horas)*/}
-                  {/*    Estar alimentado, evitando alimentos gordurosos*/}
-                  {/*    Não tem com anemia no teste realizado imediatamente antes da doação*/}
-                  {/*    Não tem com hipertensão ou hipotensão arterial no momento da doação*/}
-                  {/*    Não está com aumento ou diminuição dos batimentos cardíacos no momento da doação*/}
-                  {/*    Não está com febre no dia da doação*/}
-                  {/*    Observações: Campo área de texto com 15 linhas e 40 colunas.*/}
-                  {/*    Botão: Enviar*/}
-                  {/*</p>*/}
+                  <button type="submit" className={'col-span-2 h-8 shadow-2xl bg-gray-1 hover:bg-gray-3'}>Enviar</button>
               </Form>
           </Formik>
 

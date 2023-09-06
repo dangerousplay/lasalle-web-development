@@ -13,5 +13,14 @@
 
   body {
     @apply bg-gray-1 text-gray-12;
+    background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+    background-image: linear-gradient(30deg, rgb(203, 211, 242) 12%, transparent 12.5%, transparent 87%, rgb(203, 211, 242) 87.5%, rgb(203, 211, 242)),
+    linear-gradient(150deg, rgb(228, 232, 252) 12%, transparent 12.5%, transparent 87%, rgb(228, 232, 252) 87.5%, rgb(228, 232, 252)),
+    linear-gradient(30deg, rgb(228, 232, 252) 12%, transparent 12.5%, transparent 87%, rgb(228, 232, 252) 87.5%, rgb(228, 232, 252)),
+    linear-gradient(150deg, rgb(228, 232, 252) 12%, transparent 12.5%, transparent 87%, rgb(228, 232, 252) 87.5%, rgb(228, 232, 252)),
+    linear-gradient(60deg, rgb(222, 222, 236) 25%, transparent 25.5%, transparent 75%, rgb(222, 222, 236) 75%, rgb(222, 222, 236)),
+    linear-gradient(60deg, rgb(222, 222, 236) 25%, transparent 25.5%, transparent 75%, rgb(222, 222, 236) 75%, rgb(222, 222, 236));
+    background-size: 80px 140px;
+
   }
 }

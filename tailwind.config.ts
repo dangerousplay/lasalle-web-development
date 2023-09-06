@@ -22,7 +22,8 @@ export default {
       transparent: "transparent",
     },
     fontFamily: {
-      sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
+      // sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
+      sans: ['"Times New Roman"', 'Times', 'serif']
     },
     fontSize: {
       "160-fluid": [`min(10vw, ${pxRem(160)})`, { lineHeight: "1.1" }],
