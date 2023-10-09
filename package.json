@@ -29,7 +29,7 @@
     "yup": "1.2.0"
   },
   "devDependencies": {
-    "@radix-ui/colors": "0.1.8",
+    "@radix-ui/colors": "3.0.0",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.9",
     "autoprefixer": "10.4.14",
